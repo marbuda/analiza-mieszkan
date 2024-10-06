@@ -25,5 +25,3 @@ work_tables_2 = create_work_table_2(df_baza)
 save_tables(work_tables_2, ['sheet1'], file_name='output/work_table_2.xlsx')
 
 format_file('output/Baza danych output.xlsx')
-
-print('merge')
