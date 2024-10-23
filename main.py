@@ -6,12 +6,12 @@ importlib.reload(analizaMieszkana)
 importlib.reload(Formatowanie)
 importlib.reload(utils)
 from analizaMieszkana import read_data, calculate_max_price, create_work_table_1, create_work_table_2, save_tables, \
-    find_duplicates
+    find_duplicates, update_notes
 from Formatowanie import format_file
-
 
 sys.path.append(os.getcwd())
 
+update_notes()
 df_baza = read_data()
 df_baza = calculate_max_price(df_baza, 'Dzielnica')
 df_baza = calculate_max_price(df_baza, 'podzielnica')
