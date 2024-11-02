@@ -1,6 +1,7 @@
 import os
 import sys
 
+import numpy as np
 import openpyxl
 import pandas as pd
 import math
@@ -93,10 +94,11 @@ def save_tables(dfs, sheet_names, file_name):
     # Convert the 'Link' column values to clickable hyperlinks for each sheet
     for sheet_name, df in zip(sheet_names, dfs):
         ws = wb[sheet_name]
-        link_col = df.columns.get_loc("Link") + 1  # Find the 'Link' column index, 1-based for openpyxl
+        #link_col_text = df.columns.get_loc("Link") + 1  # Find the 'Link' column index, 1-based for openpyxl
+        link_col_hyper = df.columns.get_loc("Link2") + 1
 
         for row_num, link in enumerate(df["Link"], start=2):  # Start from row 2 to skip headers
-            cell = ws.cell(row=row_num, column=link_col)
+            cell = ws.cell(row=row_num, column=link_col_hyper)
             cell.value = f'=HYPERLINK("{link}", "{link}")'  # Use the link itself as the clickable text
 
     wb.save(file_name)
@@ -114,7 +116,7 @@ def create_work_table_1(df_baza):
 
     work_table_1_sheet_1 = work_table_1_sheet_1[work_table_1_sheet_1['Tabela dzwonienie'] != 'NIE']
 
-    work_table_1_sheet_1 = work_table_1_sheet_1[['l.p', 'Data dodania', 'Link', 'Adres',
+    work_table_1_sheet_1 = work_table_1_sheet_1[['l.p', 'Data dodania', 'Link', 'Link2', 'Adres',
                                                  'podzielnica', 'Pośrednik?', 'Telefon',
                                                  'Cena', 'Cena/m2', 'm2', 'Pokoje', 'Piętro',
                                                  'Rodzaj mieszkania', 'Tabela dzwonienie',
@@ -128,7 +130,7 @@ def create_work_table_1(df_baza):
 
     work_table_1_sheet_2 = work_table_1_sheet_2[work_table_1_sheet_2['Tabela dzwonienie'] != 'NIE']
 
-    work_table_1_sheet_2 = work_table_1_sheet_2[['l.p', 'Data dodania', 'Link', 'Adres',
+    work_table_1_sheet_2 = work_table_1_sheet_2[['l.p', 'Data dodania', 'Link', 'Link2', 'Adres',
                                                  'podzielnica', 'Pośrednik?', 'Telefon',
                                                  'Cena', 'Cena/m2', 'm2', 'Pokoje', 'Piętro',
                                                  'Rodzaj mieszkania', 'Tabela dzwonienie',
@@ -151,7 +153,7 @@ def create_work_table_2(df_baza):
 
     work_table_2_sheet_1 = work_table_2_sheet_1[work_table_2_sheet_1['Tabela dzwonienie'] != 'NIE']
 
-    work_table_2_sheet_1 = work_table_2_sheet_1[['l.p', 'Data dodania', 'Link', 'Adres',
+    work_table_2_sheet_1 = work_table_2_sheet_1[['l.p', 'Data dodania', 'Link', 'Link2', 'Adres',
                                                  'podzielnica', 'Pośrednik?', 'Telefon',
                                                  'Cena', 'Cena/m2', 'm2', 'Pokoje', 'Piętro',
                                                  'Rodzaj mieszkania', 'Tabela dzwonienie',

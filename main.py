@@ -6,14 +6,12 @@ import analizaMieszkana, Formatowanie, utils
 # importlib.reload(Formatowanie)
 # importlib.reload(utils)
 from analizaMieszkana import read_data, calculate_max_price, create_work_table_1, create_work_table_2, save_tables, \
-    find_duplicates, update_notes, update_tabela_dzwonienie
+    find_duplicates
 from Formatowanie import format_file
 
 sys.path.append(os.getcwd())
 
 
-update_notes()
-update_tabela_dzwonienie()
 df_baza = read_data()
 #write original df with duplicates highlighted in original space
 df_baza = find_duplicates(df_baza, ['Adres', 'm2', 'Piętro'])
